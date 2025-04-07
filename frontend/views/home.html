@@ -1,8 +1,9 @@
 <!-- Home Page Content -->
-<section class="py-5 bg-light">
+<section id="home" class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 justify-content-center">
             
+            <!-- Razer Kraken Kitty Headset -->
             <div class="col mb-5">
                 <a href="#product" class="text-decoration-none text-dark">
                     <div class="card h-100 shadow-sm border-0">
@@ -20,42 +21,54 @@
                     </div>
                 </a>
                 <div class="card-footer bg-transparent border-0 text-center">
-                    <a class="btn btn-primary w-100" href="#">Add to Cart</a>
+                    <button class="btn btn-primary w-100" 
+        onclick="addToCart('razer1', 'Razer Kraken Kitty Headset', 99.99, 'frontend/assets/razerset.jpeg')">
+    Add to Cart
+</button>
                 </div>
             </div>
 
+            <!-- PlayStation 5 -->
             <div class="col mb-5">
-                <a href="#product" class="text-decoration-none text-dark">
+                <a href="#product2" class="text-decoration-none text-dark">
                     <div class="card h-100 shadow-sm border-0">
                         <img class="card-img-top img-fluid" src="frontend/assets/ps5.jpg" alt="PlayStation 5" />
                         <div class="card-body text-center">
-                            <h5 class="fw-bolder">PlayStation 5</h5>
+                            <h5 class="fw-bolder">PlayStation 5 Console</h5>
                             <p class="text-muted fw-bold">$399.00</p>
                         </div>
                     </div>
                 </a>
                 <div class="card-footer bg-transparent border-0 text-center">
-                    <a class="btn btn-primary w-100" href="#">Add to Cart</a>
+                    <button class="btn btn-primary w-100" 
+        onclick="addToCart('ps5', 'PlayStation 5 Console', 399.00, 'frontend/assets/ps5.jpg')">
+    Add to Cart
+</button>
                 </div>
             </div>
 
+            <!-- Logitech G29 -->
             <div class="col mb-5">
-                <a href="#product" class="text-decoration-none text-dark">
+                <a href="#product3" class="text-decoration-none text-dark">
                     <div class="card h-100 shadow-sm border-0">
                         <img class="card-img-top img-fluid" src="frontend/assets/g29.jpg" alt="Logitech G29" />
                         <div class="card-body text-center">
-                            <h5 class="fw-bolder">Logitech G29</h5>
+                            <h5 class="fw-bolder">Logitech G29 Racing Wheel</h5>
                             <p class="text-muted fw-bold">$599.00</p>
                         </div>
                     </div>
                 </a>
                 <div class="card-footer bg-transparent border-0 text-center">
-                    <a class="btn btn-primary w-100" href="#">Add to Cart</a>
+                    <button class="btn btn-primary w-100" 
+                            onclick="addToCart('g29', 'Logitech G29 Racing Wheel', 599.00, 'frontend/assets/g29.jpg')">
+                        Add to Cart
+                    </button>
                 </div>
             </div>
 
+            <!-- Xbox Controller -->
             <div class="col mb-5">
-                <a href="#product" class="text-decoration-none text-dark">
+                <a href="#product4" class="text-decoration-none text-dark">
                     <div class="card h-100 shadow-sm border-0">
                         <img class="card-img-top img-fluid" src="frontend/assets/xboxcontroler.jpg" alt="Xbox Controller" />
                         <div class="card-body text-center">
@@ -68,7 +81,10 @@
                     </div>
                 </a>
                 <div class="card-footer bg-transparent border-0 text-center">
-                    <a class="btn btn-primary w-100" href="#">Add to Cart</a>
+                    <button class="btn btn-primary w-100" 
+                            onclick="addToCart('xbox-ctrl', 'Xbox One Controller', 89.99, 'frontend/assets/xboxcontroler.jpg')">
+                        Add to Cart
+                    </button>
                 </div>
             </div>
 
@@ -121,3 +137,11 @@
         </div>
     </div>
 </section>
+
+<!-- Cart Notification Container (hidden by default) -->
+<div id="cart-notification-container" class="position-fixed top-0 end-0 p-3" style="z-index: 9999; display: none;">
+    <div class="alert alert-success alert-dismissible fade show">
+        <span id="notification-message"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>

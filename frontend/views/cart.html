@@ -1,33 +1,68 @@
-
 <section class="cart-section py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <h2 class="text-center text-white">Shopping Cart</h2>
+        <h2 class="text-center mb-5">Your Shopping Cart</h2>
+        
         <div class="row">
+            <!-- Cart Items -->
             <div class="col-lg-8">
-                <div class="cart-items bg-light p-3 rounded shadow-sm">
-                    <table class="table table-borderless">
+                <div class="cart-items bg-white p-4 rounded shadow-sm">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Product</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
-                                <th>Remove</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="cart-items">
-                            <!-- Cart items will be dynamically added here -->
+                            <!-- Cart items will be loaded here -->
                         </tbody>
                     </table>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary" onclick="window.history.back()">
+                            <i class="bi bi-arrow-left"></i> Continue Shopping
+                        </button>
+                        <button onclick="clearCart()" class="btn btn-danger">Clear Cart</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="cart-summary bg-light p-4 rounded shadow-sm">
-                    <h4 class="text-center">Cart Summary</h4>
-                    <p class="d-flex justify-content-between"><span>Subtotal:</span> <span id="subtotal">$0.00</span></p>
-                    <button class="btn btn-primary w-100 mt-3">Proceed to Checkout</button>
+            
+            
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="cart-summary bg-white p-4 rounded shadow-sm">
+                    <h4 class="mb-4">Order Summary</h4>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tax (10%):</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Shipping:</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    
+                    <button class="btn btn-primary w-100 py-2" onclick="window.location.href='#checkout'">
+                        Proceed to Checkout
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="scripts.js"></script>
 </section>

@@ -11078,9 +11078,8 @@ section.py-5.bg-light {
 .swiper-button-prev {
   color: white;
 }
-.cart-section {
-  background: url('assets/cart-bg.jpg') no-repeat center center/cover;
-}
+
+
 .cart-items table {
   width: 100%;
 }
@@ -11101,6 +11100,27 @@ section.py-5.bg-light {
 .btn-primary {
   font-size: 18px;
   padding: 10px;
+}
+/* Cart Notification */
+.cart-notification {
+  min-width: 300px;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Quantity Input */
+.quantity-input {
+  text-align: center;
+}
+
+/* Empty Cart Message */
+.empty-cart-message {
+  padding: 2rem 0;
+  color: #6c757d;
 }
 
 

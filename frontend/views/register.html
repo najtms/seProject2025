@@ -1,41 +1,42 @@
-    <!-- Register Form -->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h2 class="fw-bolder text-center">Create an Account</h2>
-                    <form id="registerForm">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="role" class="form-label">Role</label>
-                            <select class="form-control" id="role">
-                                <option value="User">User</option>
-                                <option value="Admin">Admin</option>
-                            </select>
-                        </div>
-                        <div class="mb-3" id="adminPasswordField" style="display: none;">
-                            <label for="adminPassword" class="form-label">Admin Password</label>
-                            <input type="password" class="form-control" id="adminPassword">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" required>
-                            <small id="passwordError" style="color: red; display: none;">Passwords do not match!</small>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
-                    </form>
-                </div>
+<!-- Register Form -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bolder text-center">Create an Account</h2>
+                <form id="registerForm" onsubmit="return false;">
+                    <div class="mb-3">
+                        <label for="registerUsername" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="registerUsername" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-control" id="role">
+                            <option value="Customer">Customer</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="adminPasswordField" style="display: none;">
+                        <label for="adminPassword" class="form-label">Admin Password</label>
+                        <input type="password" class="form-control" id="adminPassword" placeholder="Admin Password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                        <small id="passwordError" style="color: red; display: none;">Passwords do not match!</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<script src="scripts.js"></script>  
