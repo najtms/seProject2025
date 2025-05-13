@@ -1,0 +1,5 @@
+Fixo a few things,
+Added routes
+Added Middleware
+Added JWT
+?? Ne znam sto mozes na stranici podesit jesi li admin ili user? bas weird vjv cu redoat to

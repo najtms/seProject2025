@@ -254,7 +254,7 @@ function loadCart() {
                 <td colspan="5" class="text-center py-4">Your cart is empty</td>
             </tr>
         `;
-        subtotalEl.textContent = "$0.00";
+
         return;
     }
     

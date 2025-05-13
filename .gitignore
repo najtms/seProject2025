@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+backend/vendor/
+backend/errors.log
+*.env
+.env.local
+.DS_Store
+.idea/
+*.swp
+*.swo
+*.bak
+.vscode/

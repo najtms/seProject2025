@@ -10,4 +10,5 @@ class OrderItemDao extends BaseDao {
         return "OrderItemID";
     }
 }
+
 ?>
