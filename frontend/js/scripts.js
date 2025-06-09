@@ -9,59 +9,10 @@ if (roleSelect) {
     });
 }
 
-function handleRegistration() {
-    const username = document.getElementById("registerUsername").value;
-    const email = document.getElementById("registerEmail").value;
-    const password = document.getElementById("registerPassword").value;
-    const role = document.getElementById("role").value;
-    const adminPassword = document.getElementById("adminPassword")?.value;
-
-    // Basic validation
-    if (!username || !email || !password) {
-        alert("Please fill in all required fields.");
-        return;
-    }
-
-    if (role === "Admin" && adminPassword !== "admin123") {
-        alert("Incorrect admin password.");
-        return;
-    }
-
-    // Save user
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    if (users.some(u => u.email === email)) {
-        alert("Email already exists.");
-        return;
-    }
-
-    users.push({ username, email, password, role });
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Registration successful! Please log in.");
-    window.location.hash = "#login"; // redirect to login page
-}
-
 
 
 
 // Login form handling
-function handleLogin() {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (!user) {
-        alert("Invalid email or password.");
-        return;
-    }
-
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    alert("Login successful!");
-    updateNavbar();
-    window.location.hash = "#home";
-}
 
 
 function updateNavbar() {
@@ -80,13 +31,6 @@ function updateNavbar() {
         if (logoutButton) logoutButton.style.display = "none";
     }
 }
-function logout() {
-    localStorage.removeItem("currentUser");
-    alert("Logged out successfully.");
-    updateNavbar();
-    window.location.hash = "#home";
-}
-
 
 
 // ==================== INITIALIZE PAGES ====================
@@ -254,7 +198,7 @@ function loadCart() {
                 <td colspan="5" class="text-center py-4">Your cart is empty</td>
             </tr>
         `;
-        subtotalEl.textContent = "$0.00";
+
         return;
     }
     
@@ -400,4 +344,45 @@ function createNotificationContainer() {
     container.style.zIndex = "9999";
     document.body.appendChild(container);
     return container;
+}
+
+// Add JWT handling to login function
+
+
+async function fetchProtectedData() {
+    const token = localStorage.getItem('jwt');
+    const response = await fetch('/api/protected', {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    
+}
+
+function handleRegistration() {
+    const username = document.getElementById("registerUsername").value.trim();
+    const email = document.getElementById("registerEmail").value.trim();
+    const password = document.getElementById("registerPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const passwordError = document.getElementById("passwordError");
+
+    // Email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        showNotification("Please enter a valid email address.");
+        return;
+    }
+    // Password match validation
+    if (password !== confirmPassword) {
+        if (passwordError) passwordError.style.display = "block";
+        showNotification("Passwords do not match.");
+        return;
+    } else {
+        if (passwordError) passwordError.style.display = "none";
+    }
+    // Required fields validation
+    if (!username || !email || !password || !confirmPassword) {
+        showNotification("All fields are required.");
+        return;
+    }
+    // If all validations pass, proceed with registration (call AuthService.register or AJAX)
+    AuthService.register();
 }

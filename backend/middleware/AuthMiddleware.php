@@ -27,5 +27,28 @@ class AuthMiddleware {
        if (!in_array($permission, $user->permissions)) {
            Flight::halt(403, 'Access denied: permission missing');
        }
-   }   
+   } 
+   
+   
+ 
+
+    public function verifyIsAdmin()
+    {
+        $user = Flight::get('user');
+        if ($user->is_admin === 0) {
+            Flight::halt(0, 'Access denied: User is NOT admin.');
+        }
+
+        return TRUE;
+    }
+
+    public function getUserId()
+    {
+        $user = Flight::get('user');
+
+        return $user->UserID;
+    }
+
+ 
+
 }

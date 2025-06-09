@@ -9,23 +9,23 @@ error_reporting(E_ALL ^ (E_NOTICE | E_DEPRECATED));
 
 class Config
 {
-    public static function DB_NAME()
+    public static function DATABASE_NAME()
     {
-        return 'website';
+        return 'webprojekat';
     }
-    public static function DB_PORT()
+    public static function DATABASE_PORT()
     {
         return  3306;
     }
-    public static function DB_USER()
+    public static function DATABASE_USERNAME()
     {
         return 'root';
     }
-    public static function DB_PASSWORD()
+    public static function DATABASE_PASSWORD()
     {
-        return 'root';
+        return 'vildan2314';
     }
-    public static function DB_HOST()
+    public static function DATABASE_HOST()
     {
         return '127.0.0.1';
     }

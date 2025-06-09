@@ -1,6 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// Suppress output of warnings/notices for clean JSON
+ini_set('display_errors', 0);
+error_reporting(E_ERROR);
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
@@ -18,3 +19,4 @@ $openapi = \OpenApi\Generator::scan([
 
 header('Content-Type: application/json');
 echo $openapi->toJson();
+exit;
