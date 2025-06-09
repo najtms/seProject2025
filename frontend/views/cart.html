@@ -17,16 +17,11 @@
                             </tr>
                         </thead>
                         <tbody id="cart-items">
-                            <!-- Cart items will be loaded here -->
+                           
                         </tbody>
                     </table>
                     
-                    <div class="d-flex justify-content-between mt-4">
-                        <button class="btn btn-outline-secondary" onclick="window.history.back()">
-                            <i class="bi bi-arrow-left"></i> Continue Shopping
-                        </button>
-                        <button onclick="clearCart()" class="btn btn-danger">Clear Cart</button>
-                    </div>
+                  
                 </div>
             </div>
             
@@ -47,7 +42,7 @@
                     
                     <div class="d-flex justify-content-between mb-3">
                         <span>Shipping:</span>
-                        <span id="shipping">$0.00</span>
+                        <span id="shipping">$10.00</span>
                     </div>
                     
                     <hr>
@@ -57,12 +52,22 @@
                         <span id="total">$0.00</span>
                     </div>
                     
-                    <button class="btn btn-primary w-100 py-2" onclick="window.location.href='#checkout'">
+                    <button id="checkoutbutton" class="btn btn-primary w-100 py-2" onclick="OrderService.purchaseItems()">
                         Proceed to Checkout
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="scripts.js"></script>
+
 </section>
+
+
+
+<script>
+    CartService.__init();
+</script>
+
+<script>
+    NavbarService.__init();
+</script>   

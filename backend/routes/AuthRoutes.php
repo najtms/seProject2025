@@ -9,7 +9,7 @@ Flight::group('/auth', function() {
     *     description="Add a new user to the database.",
     *     tags={"auth"},
     *     security={
-    *         {"ApiKey": {}}
+    *         {"bearerAuth": {}}
     *     },
     *     @OA\RequestBody(
     *         description="Add new user",
@@ -46,17 +46,8 @@ Flight::group('/auth', function() {
    Flight::route("POST /register", function () {
        $data = Flight::request()->data->getData();
 
-
-       $response = Flight::auth_service()->register($data);
-  
-       if ($response['success']) {
-           Flight::json([
-               'message' => 'User registered successfully',
-               'data' => $response['data']
-           ]);
-       } else {
-           Flight::halt(500, $response['error']);
-}
+     
+        Flight::json(Flight::authService()->register($data),200);
    });
    /**
     * @OA\Post(
@@ -80,8 +71,9 @@ Flight::group('/auth', function() {
    Flight::route('POST /login', function() {
        $data = Flight::request()->data->getData();
 
+    
 
-       $response = Flight::auth_service()->login($data);
+       $response = Flight::authService()->login($data);
   
        if ($response['success']) {
            Flight::json([

@@ -2,6 +2,12 @@
 Flight::group('/product', function () {
     Flight::set('product_service', new ProductService());
 
+
+    Flight::route('GET /all', function () {
+        Flight::json([
+           Flight::productService()->getAll(),
+        ]);
+    });
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @OA\Get(
@@ -66,7 +72,7 @@ Flight::group('/product', function () {
      */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Flight::route('GET /@id', function ($id) {
-        Flight::auth_middleware()->authorizeRoles([1, 2]);
+       
         Flight::json(Flight::productService()->getById($id));
     });
 
@@ -95,10 +101,10 @@ Flight::group('/product', function () {
      * )
      */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Flight::route('POST /', function () {
-        Flight::auth_middleware()->authorizeRoles([1, 2]);
+    Flight::route('POST /addproduct', function () {
+        
         $data = Flight::request()->data->getData();
-        Flight::json(Flight::productService()->addProduct($data), 201);
+        Flight::json(Flight::productService()->addProduct($data), 201); 
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +139,7 @@ Flight::group('/product', function () {
      */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Flight::route('PUT /@id', function ($id) {
-        Flight::auth_middleware()->authorizeRoles([1, 2]);
+  
         $data = Flight::request()->data->getData();
         Flight::json(Flight::productService()->update($id, $data));
     });
@@ -193,11 +199,11 @@ Flight::group('/product', function () {
      * )
      */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Flight::route('DELETE /@id', function ($id) {
-        Flight::auth_middleware()->authorizeRoles([1, 2]);
-        Flight::productService()->delete($id);
-        Flight::json(["message" => "Product $id deleted"]);
-    });
+  Flight::route('DELETE /@id', function ($id) {
+
+
+    Flight::json(Flight::productService()->deleteProduct($id), 200);
+});
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**

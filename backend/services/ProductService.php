@@ -7,30 +7,31 @@ class ProductService extends BaseService {
         parent::__construct(new ProductDao());
     }
 
-    // Renamed from addProduct() to insert() to match route calls
-    public function insert($productData) {
-        // Validate required fields
-        $required = ['Name', 'Price', 'CategoryID'];
-        foreach ($required as $field) {
-            if (empty($productData[$field])) {
-                throw new Exception("Missing required field: $field");
-            }
+    public function addProduct($productData) {
+        // Service-level validation
+        if (empty($productData)) {
+            throw new Exception("Product data is required");
         }
 
-        // Validate business rules
-        if ($productData['Price'] <= 0) {
-            throw new Exception("Product price must be positive.");
+        // Format and sanitize data
+        if (isset($productData['Price'])) {
+            $productData['Price'] = (float)$productData['Price'];
         }
-        if ($productData['Stock'] < 0) {
-            throw new Exception("Product stock cannot be negative.");
+        if (isset($productData['Stock'])) {
+            $productData['Stock'] = (int)$productData['Stock'];
         }
-
-        // Convert boolean to integer for database
+        if (isset($productData['CategoryID'])) {
+            $productData['CategoryID'] = (int)$productData['CategoryID'];
+        }
         if (isset($productData['OnSale'])) {
             $productData['OnSale'] = $productData['OnSale'] ? 1 : 0;
         }
 
-        return $this->dao->insert($productData);
+        return $this->dao->addProduct($productData);
+    }
+
+    public function deleteProduct($productId){
+        return $this->dao->deleteProduct($productId);
     }
 
     // Keep all your other methods
@@ -53,6 +54,9 @@ class ProductService extends BaseService {
         return $this->dao->updateStock($productId, $newStock);
     }
 
+    public function getById($id){
+        return $this->dao->getById($id);
+    }
     // Add these methods to support all routes
     public function getAll() {
         return $this->dao->getAll();
