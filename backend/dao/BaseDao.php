@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . "/Config.php";
 require_once __DIR__ . "/Database.php";
 
 class BaseDao {
@@ -8,19 +8,17 @@ class BaseDao {
 
     public function __construct($table) {
         $this->table = $table;
-        $this->connection = Database::connect();
+        $this->connection = (new Database())->getConnection();
     }
 
     public function getAll($order_column = null, $order_direction = "ASC") {
         $query = "SELECT * FROM {$this->table}";
-        
-        // Add ordering if specified
+
         if ($order_column) {
-            // Validate order direction to prevent SQL injection
             $order_direction = strtoupper($order_direction) === 'DESC' ? 'DESC' : 'ASC';
             $query .= " ORDER BY {$order_column} {$order_direction}";
         }
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
