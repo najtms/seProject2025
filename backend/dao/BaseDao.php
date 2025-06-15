@@ -8,7 +8,7 @@ class BaseDao {
 
     public function __construct($table) {
         $this->table = $table;
-        $this->connection = (new Database())->getConnection();
+        $this->connection = Database::connect(); // FIXED: use connect() static method
     }
 
     public function getAll($order_column = null, $order_direction = "ASC") {
