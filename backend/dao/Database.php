@@ -1,30 +1,26 @@
 <?php
+require_once __DIR__ . '/Config.php';
 
-require_once 'config.php';
+class Database {
+    private $conn;
 
-class Database{
+    public function __construct() {
+        try {
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8";
 
-  private static $connection = null;
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::MYSQL_ATTR_SSL_CA => __DIR__ . '/ca-certificate.crt', // Ensure this file exists
+            ];
 
+            $this->conn = new PDO($dsn, DB_USER, DB_PASS, $options);
 
-
-    public static function connect() {
-        if (self::$connection === null) {
-            try {
-                self::$connection = new PDO(
-                    "mysql:host=" . Config::DATABASE_HOST() . ";dbname=" . Config::DATABASE_NAME(),
-                    Config::DATABASE_USERNAME(),
-                    Config::DATABASE_PASSWORD(),
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                    ]
-                );
-            } catch (PDOException $e) {
-                die("Connection failed: " . $e->getMessage());
-            }
+        } catch (PDOException $e) {
+            die("Connection failed: " . $e->getMessage());
         }
-        return self::$connection;
+    }
+
+    public function getConnection() {
+        return $this->conn;
     }
 }
-?>

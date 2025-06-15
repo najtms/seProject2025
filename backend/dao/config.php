@@ -1,36 +1,7 @@
 <?php
+define('DB_HOST', getenv('DB_HOST'));
+define('DB_NAME', getenv('DB_NAME'));
+define('DB_USER', getenv('DB_USER'));
+define('DB_PASS', getenv('DB_PASS'));
+define('DB_PORT', getenv('DB_PORT'));
 
-
-// Set the reporting
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL ^ (E_NOTICE | E_DEPRECATED));
-
-
-class Config
-{
-    public static function DATABASE_NAME()
-    {
-        return 'webprojekat';
-    }
-    public static function DATABASE_PORT()
-    {
-        return  3306;
-    }
-    public static function DATABASE_USERNAME()
-    {
-        return 'root';
-    }
-    public static function DATABASE_PASSWORD()
-    {
-        return 'vildan2314';
-    }
-    public static function DATABASE_HOST()
-    {
-        return '127.0.0.1';
-    }
-    public static function JWT_SECRET()
-    {
-        return 'SEProject2025';
-    }
-}
